@@ -11,6 +11,29 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
+// bug do users 
+app.use(function (req, res, next) {
+
+  if (req.method === 'POST') {
+
+    var form = formidable.IncomingForm({
+      uploadDir: path.join(__dirname, "/public/images"),
+      keepExtensions: true
+    });
+
+    form.parse(req, function (err, fields, files) {
+
+      req.body = fields;
+      req.fields = fields;
+      req.files = files;
+
+      next();
+    });
+
+  } else
+    next();
+});
+
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'ejs');
