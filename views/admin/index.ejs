@@ -25,86 +25,77 @@
 
             <div class="info-box-content">
               <span class="info-box-text">Reservas</span>
-              <span class="info-box-number">90</span>
-            </div>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
-          <!-- fix for small devices only -->
-          <div class="clearfix visible-sm-block"></div>
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box" onclick="window.location.href = '/menu'" style="cursor:pointer">
-              <span class="info-box-icon bg-green">
-                <i class="fa fa-cutlery"></i>
+              <span class="info-box-number">
+                <%=data.nrreservations %>
               </span>
-              <div class="info-box-content">
-                <span class="info-box-text">Menu</span>
-                <span class="info-box-number">3</span>
-              </div>
-              <!-- /.info-box-content -->
             </div>
-            <!-- /.info-box -->
+            <!-- /.info-box-content -->
           </div>
-          <!-- /.col -->
-          <div class="col-md-3 col-sm-6 col-xs-12">
-            <div class="info-box" onclick="window.location.href = '/users'" style="cursor:pointer">
-              <span class="info-box-icon bg-yellow">
-                <i class="ion ion-ios-people-outline"></i>
-              </span>
-              <div class="info-box-content">
-                <span class="info-box-text">Usuários</span>
-                <span class="info-box-number">2</span>
-              </div>
-              <!-- /.info-box-content -->
-            </div>
-            <!-- /.info-box -->
-          </div>
-          <!-- /.col -->
+          <!-- /.info-box -->
         </div>
-      </section>
-      <!-- /.content -->
-    </div>
-    <!-- /.content-wrapper -->
-    <!-- Main Footer -->
-    <footer class="main-footer">
-      <!-- To the right -->
-      <div class="pull-right hidden-xs">
-        <a target="_blank" href="https://www.hcode.com.br">Hcode</a>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box" onclick="window.location.href = '/contacts'" style="cursor:pointer">
+            <span class="info-box-icon bg-red">
+              <i class="ion ion-ios-chatboxes"></i>
+            </span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Contatos</span>
+              <span class="info-box-number">
+                <%=data.nrcontacts %>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+
+        <!-- fix for small devices only -->
+        <div class="clearfix visible-sm-block"></div>
+
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box" onclick="window.location.href = '/menu'" style="cursor:pointer">
+            <span class="info-box-icon bg-green">
+              <i class="fa fa-cutlery"></i>
+            </span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Menu</span>
+              <span class="info-box-number">
+                <%=data.nrmenus %>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
+        <div class="col-md-3 col-sm-6 col-xs-12">
+          <div class="info-box" onclick="window.location.href = '/users'" style="cursor:pointer">
+            <span class="info-box-icon bg-yellow">
+              <i class="ion ion-ios-people-outline"></i>
+            </span>
+
+            <div class="info-box-content">
+              <span class="info-box-text">Usuários</span>
+              <span class="info-box-number">
+                <%=data.nrusers %>
+              </span>
+            </div>
+            <!-- /.info-box-content -->
+          </div>
+          <!-- /.info-box -->
+        </div>
+        <!-- /.col -->
       </div>
-      <!-- Default to the left -->
-      Projeto desenvolvido no curso online de JavaScript da Hcode Treinamentos.
-    </footer>
+
+    </section>
+    <!-- /.content -->
   </div>
-  <!-- jQuery 3 -->
-  <script src="bower_components/jquery/dist/jquery.min.js"></script>
-  <!-- Bootstrap 3.3.7 -->
-  <script src="bower_components/bootstrap/dist/js/bootstrap.min.js"></script>
-  <!-- PACE -->
-  <script src="bower_components/PACE/pace.min.js"></script>
-  <!-- SlimScroll -->
-  <script src="bower_components/jquery-slimscroll/jquery.slimscroll.min.js"></script>
-  <!-- FastClick -->
-  <script src="bower_components/fastclick/lib/fastclick.js"></script>
-  <!-- AdminLTE App -->
-  <script src="dist/js/adminlte.min.js"></script>
-  <!-- AdminLTE for demo purposes -->
-  <script src="dist/js/demo.js"></script>
-  <!-- page script -->
-  <script type="text/javascript">
-    // To make Pace works on Ajax calls
-    $(document).ajaxStart(function () {
-      Pace.restart()
-    })
-    $('.ajax').click(function () {
-      $.ajax({
-        url: '#', success: function (result) {
-          $('.ajax-content').html('<hr>Ajax Request Completed !')
-        }
-      })
-    })
-  </script>
-</body>
-</html>
+  <!-- /.content-wrapper -->
+
+  <!-- Main Footer -->
+
+  <%- include('inc/footer.ejs') -%>
