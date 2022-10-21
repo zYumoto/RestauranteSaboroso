@@ -1,7 +1,8 @@
 var express = require("express");
 var users = require('./../inc/users')
 var admin = require("./../inc/admin")
-var menus = require("./../inc/menus")
+var menus = require("./../inc/menus");
+const { resume } = require("../inc/db");
 var router = express.Router();
 
 // se fica dando pau do "User" comenta a linha
@@ -88,7 +89,12 @@ router.get("/menus", function (req, res, next) {
 
 router.post("/menus", function (req, res, next) {
 
-    res.send(req.body)
+    menus.save(req.fields, req.files).then(results => {
+
+        res.send(results)
+    }).catch(err => {
+        res.send(err)
+    })
 
 });
 
