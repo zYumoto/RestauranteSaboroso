@@ -1,4 +1,3 @@
-const res = require('express/lib/response');
 var conn = require('./db')
 
 module.exports = {
@@ -20,8 +19,10 @@ module.exports = {
         return new Promise((resolve, reject) => {
 
             conn.query(`
+
             INSERT INTO tb_contacts (name,email,message)
             VALUES(?, ? , ?)
+
             `, [
                 fields.name,
                 fields.email,
