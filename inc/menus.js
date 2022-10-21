@@ -68,6 +68,24 @@ module.exports = {
                     resolve(results);
             });
         });
-    }
+    },
 
+    delete(id) {
+
+        return new Promise((resolve, reject) => {
+
+            conn.query(`
+                DELETE FROM tb_menus WHERE id = ?
+            `, [
+                id
+            ], (err, results) => {
+
+                if (err) {
+                    reject(err);
+                } else {
+                    resolve(results);
+                }
+            });
+        });
+    }
 }
