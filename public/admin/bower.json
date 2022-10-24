@@ -11,6 +11,7 @@
     "dist/js/adminlte.js",
     "build/less/AdminLTE.less"
   ],
+  
   "keywords": [
     "css",
     "js",

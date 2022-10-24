@@ -55,6 +55,7 @@ module.exports = {
                 icon: "calendar-check-o",
                 active: false,
             },
+            
             {
                 text: "contatos",
                 href: "/admin/contacts",
