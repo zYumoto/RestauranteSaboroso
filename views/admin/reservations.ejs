@@ -70,9 +70,9 @@
                 <td>2</td>
                 <td>1/1/2019</td>
                 <td>10:30</td>
-                <td><button type="button" class="btn btn-xs btn-info btn-update" data-toggle="modal"
-                    data-target="#modal-update"><i class="fa fa-pencil"></i> Editar</button>&nbsp;<button type="button"
-                    class="btn btn-xs btn-danger btn-delete"><i class="fa fa-trash"></i> Excluir</button></td>
+                <td><button type="button" class="btn btn-xs btn-info btn-update"><i class="fa fa-pencil"></i>
+                  Editar</button>&nbsp;<button type="button" class="btn btn-xs btn-danger btn-delete"><i
+                    class="fa fa-trash"></i>
               </tr>
             </tbody>
           </table>
@@ -197,6 +197,8 @@
   </div>
   <%- include('inc/footer.ejs') -%>
     <script src="/js/hcode-formsave.js"></script>
+    <script src="/js/moment.min.js"></script>
+
 
     <script>
       let formCreate = document.querySelector('#modal-create form');
@@ -219,6 +221,40 @@
       }).catch(err => {
 
         console.log(err)
+      });
+      [...document.querySelectorAll('.btn-update')].forEach(btn => {
+        btn.addEventListener('click', e => {
+          let tr = e.path.find(el => {
+            return (el.tagName.toUpperCase() === 'TR')
+          });
+          let data = JSON.parse(tr.dataset.row);
+          for (let name in data) {
+            let input = formUpdate.querySelector(`[name=${name}]`);
+            switch (name) {
+              case 'date':
+                if (input) input.value = moment(data[name]).format('YYYY-MM-DD');
+                break
+              default:
+                if (input) input.value = data[name];
+            }
+          }
+          $('#modal-update').modal('show')
+        });
+      });
+      [...document.querySelectorAll('.btn-delete')].forEach(btn => {
+        btn.addEventListener('click', e => {
+          let tr = e.path.find(el => {
+            return (el.tagName.toUpperCase() === 'TR')
+          });
+          let data = JSON.parse(tr.dataset.row);
+          if (confirm(`Deseja Realmente excluir a reserva de ${data.name}?`)) {
+            fetch(`/admin/reservations/${data.id}`, {
+              method: 'DELETE'
+            }).then(response => response.json()).then(json => {
+              window.location.reload();
+            });
+          }
+        });
       });
 
     </script>

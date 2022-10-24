@@ -1,9 +1,13 @@
 var express = require("express");
-var users = require('./../inc/users')
-var admin = require("./../inc/admin")
+var users = require('./../inc/users');
+var admin = require("./../inc/admin");
 var menus = require("./../inc/menus");
-var reservations = require("./../inc/reservations.js")
+var reservations = require("./../inc/reservations.js");
+var moment = require("moment");
 var router = express.Router();
+
+moment.locale("pt-BR");
+
 
 // se fica dando pau do "User" comenta a linha
 router.use(function (req, res, next) {
@@ -117,7 +121,8 @@ router.get("/reservations", function (req, res, next) {
     reservations.getReservations().then(data => {
         res.render("admin/reservations", admin.getParams(req, {
             date: {},
-            data
+            data,
+            moment
         }))
 
     })
