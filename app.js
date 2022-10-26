@@ -11,13 +11,23 @@ var adminRouter = require('./routes/admin');
 
 var app = express();
 
-app.use(function (req, res, next) {
+var http = http.Server(app);
+var io = socket(http);
 
-  if (req.method === 'POST') {
+io.on("connection", function (socket) {
+  console.log("Novo usuario conectado");
+});
+
+var indexRouter = require("./routes/index")(io);
+var adminRouter = require("./routes/admin")(io);
+
+app.use(function (req, res, next) {
+  req.body = {};
+  if (req.method === "POST") {
 
     var form = formidable.IncomingForm({
-      uploadDir: path.join(__dirname, '/public/images'),
-      keepExtensions: true
+      uploadDir: path.join(__dirname, "/public/images"),
+      keepExtensions: true,
     });
 
     form.parse(req, function (err, fields, files) {
@@ -26,7 +36,7 @@ app.use(function (req, res, next) {
       req.fields = fields;
       req.files = files;
 
-      next()
+      next();
     });
   } else {
     next();
@@ -49,8 +59,8 @@ app.use(session({
   saveUninitialized: true
 }));
 
-app.use(logger('dev'));
-app.use(express.json());
+app.use(logger("dev"));
+
 //app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
