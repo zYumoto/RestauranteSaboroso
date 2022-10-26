@@ -1,12 +1,13 @@
 class HcodeFileReader {
+
     constructor(inputEl, imgEl) {
 
         this.inputEl = inputEl;
         this.imgEl = imgEl;
 
         this.initInputEvent();
-
     }
+
     initInputEvent() {
 
         document.querySelector(this.inputEl).addEventListener('change', e => {
@@ -14,10 +15,9 @@ class HcodeFileReader {
             this.reader(e.target.files[0]).then(result => {
 
                 document.querySelector(this.imgEl).src = result;
-
             });
         });
-    };
+    }
 
     reader(file) {
 
@@ -31,13 +31,9 @@ class HcodeFileReader {
             }
 
             reader.onerror = function () {
-
-                reject("NAo foi possivel ler a imagem.")
+                reject('Não foi possivel abrir a imagem')
             }
             reader.readAsDataURL(file);
-
         })
-
-
     }
 }
