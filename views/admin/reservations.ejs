@@ -196,20 +196,16 @@
     <!-- /.modal-dialog -->
   </div>
   <%- include('inc/footer.ejs') -%>
+
     <script src="/js/hcode-formsave.js"></script>
     <script src="/js/moment.min.js"></script>
-    <script src="/js/hcode-gride.js"></script>
-
-
+    <script src="/js/hcode-grid.js"></script>
 
     <script>
-
-        new HcodeGrid({
+      new HcodeGrid({
         deleteUrl: '/admin/reservations/${data.id}',
         deleteMsg: 'Deseja realmente excluirareserva de${data.name}?',
-
         onUpdateLoad: (form, name, data) => {
-          
           let input = form.querySelector(`[name=${name}]`);
           switch (name) {
             case 'date':
@@ -220,5 +216,4 @@
           }
         }
       });  
-        
     </script>
