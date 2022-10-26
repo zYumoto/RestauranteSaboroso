@@ -1,5 +1,5 @@
 let conn = require('./db');
-let path = require('path')
+let path = require('path');
 
 module.exports = {
     getMenus() {
@@ -30,6 +30,7 @@ module.exports = {
                 fields.description,
                 fields.price
             ];
+            console.log(files.photo.name);
 
             if (files.photo.name) {
 
@@ -62,6 +63,7 @@ module.exports = {
             }
 
             conn.query(query, params, (err, results) => {
+                console.log(err);
 
                 if (err)
                     reject(err);
@@ -76,17 +78,15 @@ module.exports = {
         return new Promise((resolve, reject) => {
 
             conn.query(`
-                DELETE FROM tb_menus WHERE id = ?
-            `, [
+            DELETE FROM tb_menus WHERE id = ?`, [
                 id
             ], (err, results) => {
 
-                if (err) {
+                if (err)
                     reject(err);
-                } else {
+                else
                     resolve(results);
-                }
-            });
-        });
+            })
+        })
     }
 }
