@@ -7,6 +7,7 @@ var moment = require('moment');
 var router = express.Router();
 var contacts = require('./../inc/contacts');
 var emails = require('./../inc/emails');
+const { query } = require('../inc/db');
 
 
 moment.locale('pt-BR');
